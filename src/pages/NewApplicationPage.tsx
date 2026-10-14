@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import type { NewApplication } from "../types";
-
+import { useApplications } from "../hooks/UseApplications";
 // Today as YYYY-MM-DD in the user's own time zone
 const today = () => new Date().toLocaleDateString("en-CA");
 
@@ -16,11 +16,13 @@ const errorClass = "mt-1 text-sm text-red-600 dark:text-red-400";
 
 export function NewApplicationPage() {
   const navigate = useNavigate();
+  const { add } = useApplications();
   const companyRef = useRef<HTMLInputElement | null>(null);
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<NewApplication>({
     defaultValues: {
@@ -44,9 +46,19 @@ export function NewApplicationPage() {
   });
 
   const onSubmit = async (values: NewApplication) => {
-    console.log("Saving", values); // TODO Step 04: await add(values)
+  try {
+    await add(values);
     navigate("/");
-  };
+  } catch {
+    setError("root", { message: "Could not save. Please try again." });
+  }
+};
+
+{errors.root && (
+  <p role="alert" className={errorClass}>
+    {errors.root.message}
+  </p>
+)}
 
   return (
     <div className="mx-auto max-w-xl">

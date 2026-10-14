@@ -1,16 +1,35 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import type { Stage } from "../types";
-import { seedApplications } from "../api/seed";
+import { useApplications } from "../hooks/UseApplications";
 import { countByStage } from "../lib/applications";
 import { StageSummary } from "../components/StageSummary";
 import { FilterBar } from "../components/FilterBar";
 import { ApplicationList } from "../components/ApplicationList";
 
 export function ApplicationPage() {
-  const applications = seedApplications; // TODO Step 04: useApplications()
+  const { applications, loading, error } = useApplications();
   const [search, setSearch] = useState("");
   const [stage, setStage] = useState<Stage | "all">("all");
+
+  if (loading) {
+    return (
+      <div aria-busy="true" className="space-y-4">
+        <p className="sr-only">Loading…</p>
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="h-24 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <p role="alert" className="rounded-xl border border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+        {error}
+      </p>
+    );
+  }
 
   // derived, never stored
   const counts = countByStage(applications);
@@ -20,7 +39,10 @@ export function ApplicationPage() {
     .filter((a) => stage === "all" || a.stage === stage)
     .filter((a) => a.company.toLowerCase().includes(query) || a.role.toLowerCase().includes(query));
 
-  const clearFilters = () => { setSearch(""); setStage("all"); };
+  const clearFilters = () => {
+    setSearch("");
+    setStage("all");
+  };
 
   return (
     <div className="space-y-6">
