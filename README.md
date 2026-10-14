@@ -4,12 +4,12 @@ A small job-application tracker. Keep one list of the jobs you have applied for,
 
 # What it does?
 
--Add a job: company, job title, optional link, date sent, stage and optional notes
--Search by company or job title, and filter by stage
--See how many jobs are at each stage
--Open a job to read it, edit its notes, change its stage or delete it
--Shows Needs a nudge on any job still at Applied more than 14 days after it was sent
--Light and dark themes, remembered between visits
+- Add a job: company, job title, optional link, date sent, stage and optional notes
+- Search by company or job title, and filter by stage
+- See how many jobs are at each stage
+- Open a job to read it, edit its notes, change its stage or delete it
+- Shows Needs a nudge on any job still at Applied more than 14 days after it was sent
+- Light and dark themes, remembered between visits
 
 # Built with
 
