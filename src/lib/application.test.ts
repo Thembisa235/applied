@@ -17,6 +17,6 @@ describe("needsNudge", () => {
     expect(needsNudge(job, new Date("2026-10-16"))).toBe(true);
   });
   it("is false once there is an interview", () => {
-    expect(needsNudge({ ...job, stage: "interview" }, new Date("2026-12-01"))).toBe(false
+    expect(needsNudge({ ...job, stage: "interview" }, new Date("2026-12-01"))).toBe(false)
   });
 });

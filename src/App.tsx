@@ -1,18 +1,14 @@
+import { ApplicationsPage } from "./pages/ApplicationPage";
+import { ThemeToggle } from "./components/ThemeToggle";
 
-import { Button } from "./@/components/ui/button"
-
-function App() {
+export default function App() {
   return (
-    <div className="p-8">
-      <h1 className="mb-4 text-2xl font-bold">
-        Job Application Tracker
-      </h1>
-
-      <Button variant="success">
-        Mark as Accepted
-      </Button>
-    </div>
-  )
+    <main className="mx-auto min-h-screen max-w-4xl p-4 sm:p-8 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-3xl font-bold tracking-tight">Applied</h1>
+        <ThemeToggle />
+      </div>
+      <ApplicationsPage />
+    </main>
+  );
 }
-
-export default App
