@@ -7,7 +7,7 @@ import { StageSummary } from "../components/StageSummary";
 import { FilterBar } from "../components/FilterBar";
 import { ApplicationList } from "../components/ApplicationList";
 
-export function ApplicationsPage() {
+export function ApplicationPage() {
   const applications = seedApplications; // TODO Step 04: useApplications()
   const [search, setSearch] = useState("");
   const [stage, setStage] = useState<Stage | "all">("all");

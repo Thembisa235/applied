@@ -14,3 +14,5 @@ stage: Stage;
 notes?: string;
 createdAt: string;
 }
+
+export type NewApplication = Omit<Application, "id" | "createdAt">;

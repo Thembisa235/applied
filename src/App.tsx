@@ -1,14 +1,19 @@
-import { ApplicationsPage } from "./pages/ApplicationPage";
-import { ThemeToggle } from "./components/ThemeToggle";
+import { Route, Routes } from "react-router";
+import { Layout } from "./components/Layout";
+import { ApplicationsPage } from "./pages/ApplicationsPage";
+import { ApplicationPage } from "./pages/ApplicationPage";
+import { NewApplicationPage } from "./pages/NewApplicationPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export default function App() {
   return (
-    <main className="mx-auto min-h-screen max-w-4xl p-4 sm:p-8 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Applied</h1>
-        <ThemeToggle />
-      </div>
-      <ApplicationsPage />
-    </main>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<ApplicationsPage />} />
+        <Route path="new" element={<NewApplicationPage />} />
+        <Route path="applications/:id" element={<ApplicationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
