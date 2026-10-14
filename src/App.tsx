@@ -9,9 +9,9 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<ApplicationsPage />} />
+        <Route index element={<ApplicationPage />} />
         <Route path="new" element={<NewApplicationPage />} />
-        <Route path="applications/:id" element={<ApplicationPage />} />
+        <Route path="applications/:id" element={<ApplicationsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

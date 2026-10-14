@@ -27,3 +27,11 @@ export function countByStage(
 
   return counts;
 }
+
+export function formatDate(dateSent: string): string {
+  return new Date(dateSent).toLocaleDateString("en-ZA", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
